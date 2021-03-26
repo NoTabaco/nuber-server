@@ -1,0 +1,19 @@
+{
+  "name": "nuber-server",
+  "version": "1.0.0",
+  "description": "Server for the (N)Uber Clone. GraphQL, Typescript, NodeJS",
+  "main": "index.js",
+  "repository": "https://github.com/NoTabaco/nuber-server.git",
+  "author": "SevenStars <32127313+NoTabaco@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^14.14.36",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql"
+  }
+}
