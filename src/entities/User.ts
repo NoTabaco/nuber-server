@@ -66,6 +66,7 @@ class User extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: string;
+
   @UpdateDateColumn()
   updatedAt: string;
 

@@ -31,6 +31,7 @@ class Verification extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: string;
+
   @UpdateDateColumn()
   updatedAt: string;
 
