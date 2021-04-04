@@ -16,7 +16,7 @@ Server for the (N)Uber Clone. GraphQL, Typescript, NodeJS
 
 ### Authentication:
 
-- [ ] Generate JWT
+- [x] Generate JWT
 - [ ] Verify JWT
 
 ---
