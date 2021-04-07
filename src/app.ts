@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import logger from "morgan";
 import schema from "./schema";
+import decodeJWT from "./utils/decodeJWT";
 
 class App {
   public app: GraphQLServer;
@@ -18,7 +19,16 @@ class App {
         contentSecurityPolicy: false,
       })
     );
+    this.app.express.use(this.jwt);
+  };
+
+  private jwt = async (req, res, next): Promise<void> => {
+    const token = req.get("X-JWT");
+    if (token) {
+      const user = await decodeJWT(token);
+      console.log(user);
+    }
+    next();
   };
 }
-
 export default new App().app;
