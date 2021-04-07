@@ -1,5 +1,6 @@
-import { GraphQLServer } from "graphql-yoga";
 import cors from "cors";
+import { NextFunction, Response } from "express";
+import { GraphQLServer } from "graphql-yoga";
 import helmet from "helmet";
 import logger from "morgan";
 import schema from "./schema";
@@ -8,7 +9,12 @@ import decodeJWT from "./utils/decodeJWT";
 class App {
   public app: GraphQLServer;
   constructor() {
-    this.app = new GraphQLServer({ schema });
+    this.app = new GraphQLServer({
+      schema,
+      context: (req) => {
+        return { req: req.request };
+      },
+    });
     this.middlewares();
   }
   private middlewares = (): void => {
@@ -22,11 +28,19 @@ class App {
     this.app.express.use(this.jwt);
   };
 
-  private jwt = async (req, res, next): Promise<void> => {
+  private jwt = async (
+    req,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     const token = req.get("X-JWT");
     if (token) {
       const user = await decodeJWT(token);
-      console.log(user);
+      if (user) {
+        req.user = user;
+      } else {
+        req.user = undefined;
+      }
     }
     next();
   };
