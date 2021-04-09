@@ -28,8 +28,8 @@ Server for the (N)Uber Clone. GraphQL, Typescript, NodeJS
 - [x] Complete Email Verification
 - [x] Update My Profile
 - [x] Toggle Driving Mode
-- [ ] Report Location / Orientation
-- [ ] Add Place
+- [x] Report Location / Orientation
+- [x] Add Place
 - [ ] Edit Place
 - [ ] Delete Place
 - [ ] See Nearby Drivers
