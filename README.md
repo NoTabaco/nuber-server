@@ -31,8 +31,8 @@ Server for the (N)Uber Clone. GraphQL, Typescript, NodeJS
 - [x] Report Location / Orientation
 - [x] Add Place
 - [x] Edit Place
-- [ ] Delete Place
-- [ ] Get My Places
+- [x] Delete Place
+- [x] Get My Places
 - [ ] See Nearby Drivers
 - [ ] Subscribe to Nearby Drivers
 - [ ] Request a Ride
