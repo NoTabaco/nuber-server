@@ -29,9 +29,6 @@ class Place extends BaseEntity {
   @Column({ type: "boolean", default: false })
   isFav: boolean;
 
-  @Column({ type: "int", nullable: true })
-  placeId: number;
-
   @Column({ nullable: true })
   userId: number;
 
