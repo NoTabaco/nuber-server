@@ -14,6 +14,9 @@ class Place extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ nullable: true })
+  placeId: number;
+
   @Column({ type: "text" })
   name: string;
 
