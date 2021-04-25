@@ -98,6 +98,7 @@ type Place {
   isFav: Boolean!
   userId: Int!
   user: User!
+  placeId: Int!
   createdAt: String!
   updatedAt: String
 }
