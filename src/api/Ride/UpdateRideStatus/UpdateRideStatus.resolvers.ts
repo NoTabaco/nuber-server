@@ -26,7 +26,7 @@ const resolvers: Resolvers = {
                   id: args.rideId,
                   status: "REQUESTING",
                 },
-                { relations: ["passenger"] }
+                { relations: ["passenger", "driver"] }
               );
               if (ride) {
                 ride.driver = user;
@@ -40,13 +40,26 @@ const resolvers: Resolvers = {
                 ride.save();
               }
             } else {
-              ride = await Ride.findOne({
-                id: args.rideId,
-                driver: user,
-              });
+              ride = await Ride.findOne(
+                {
+                  id: args.rideId,
+                  driver: user,
+                },
+                { relations: ["passenger", "driver"] }
+              );
             }
             if (ride) {
               ride.status = args.status;
+              if (ride.status === "FINISHED") {
+                ride.driver = user;
+                user.isTaken = false;
+                user.save();
+                const passenger = await User.findOne({ id: ride.passengerId });
+                if (passenger) {
+                  passenger.isRiding = false;
+                  passenger.save();
+                }
+              }
               ride.save();
               pubSub.publish("rideUpdate", { RideStatusSubscription: ride });
               return {
